@@ -1,12 +1,21 @@
 defmodule TeamBudgetWeb.Router do
+  @moduledoc false
+
   use TeamBudgetWeb, :router
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/api", TeamBudgetWeb do
+  scope "/" do
     pipe_through :api
+    forward "/graphql", Absinthe.Plug, schema: TeamBudgetGraphQL.Schema, json_code: Jason
+
+    if Mix.env() == :dev do
+      forward "/graphiql", Absinthe.Plug.GraphiQL,
+        schema: TeamBudgetGraphQL.Schema,
+        json_code: Jason
+    end
   end
 
   # Enables LiveDashboard only for development
@@ -17,11 +26,12 @@ defmodule TeamBudgetWeb.Router do
   # you can use Plug.BasicAuth to set up some basic authentication
   # as long as you are also using SSL (which you should anyway).
   # if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
+  import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-      pipe_through [:fetch_session, :protect_from_forgery]
-      live_dashboard "/dashboard", metrics: TeamBudgetWeb.Telemetry
-    end
+  scope "/" do
+    pipe_through [:fetch_session, :protect_from_forgery]
+    live_dashboard "/dashboard", metrics: TeamBudgetWeb.Telemetry
+  end
+
   # end
 end
