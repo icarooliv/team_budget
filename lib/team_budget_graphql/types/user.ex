@@ -12,4 +12,12 @@ defmodule TeamBudgetGraphQL.Types.User do
     field :password_hash, :string
     field :role, :string
   end
+
+  input_object :user_input do
+    field :first_name, non_null(:string)
+    field :last_name, non_null(:string)
+    field :email, non_null(:string)
+    field :password_hash, non_null(:string)
+    field :role, :string
+  end
 end
