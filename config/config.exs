@@ -11,6 +11,10 @@ config :team_budget,
   ecto_repos: [TeamBudget.Repo],
   generators: [binary_id: true]
 
+config :team_budget, TeamBudget.Accounts.Core.Guardian,
+  issuer: "team_budget",
+  secret_key: "TKkGrFUPiaXRC9Q/OLrCwXtMQTyf/mYuo96OL2kP+qUsLtjh/h0DuSNyYp2Mo7kc"
+
 # Configures the endpoint
 config :team_budget, TeamBudgetWeb.Endpoint,
   url: [host: "localhost"],

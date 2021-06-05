@@ -4,7 +4,7 @@ defmodule TeamBudgetGraphQL.Resolvers.UserResolver do
   """
   alias TeamBudget.Accounts
 
-  def list_users(parent, params, resolutions) do
+  def list_users(_parent, _params, _resolutions) do
     {:ok, Accounts.list_users()}
   end
 

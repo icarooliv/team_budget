@@ -12,11 +12,22 @@
 
 alias TeamBudget.{Accounts.User, Repo}
 
-%{first_name: "Icaro", last_name: "Oliveira", email: "icaro@email.com", password_hash: "123123"}
+%{
+  first_name: "Icaro",
+  last_name: "Oliveira",
+  email: "icaro@email.com",
+  password: "123123",
+  password_confirmation: "123123"
+}
 |> User.changeset()
-|> IO.inspect()
-|> Repo.insert()
+|> Repo.insert!()
 
-%{first_name: "Icaro2", last_name: "Oliveira", email: "icaro2@email.com", password_hash: "123123"}
+%{
+  first_name: "Icaro2",
+  last_name: "Oliveira",
+  email: "icaro2@email.com",
+  password: "123123",
+  password_confirmation: "123123"
+}
 |> User.changeset()
-|> Repo.insert()
+|> Repo.insert!()
