@@ -5,5 +5,7 @@ defmodule TeamBudgetGraphQL.Types do
   use Absinthe.Schema.Notation
   alias TeamBudgetGraphQL.Types
 
-  import_types(Types.{User, Session})
+  import_types(Types.User)
+  import_types(Types.Session)
+  import_types(Types.Team)
 end

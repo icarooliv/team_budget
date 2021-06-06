@@ -1,6 +1,6 @@
 defmodule TeamBudget.Accounts.Core.UserRepo do
   @doc false
-  alias TeamBudget.Accounts.User
+  alias TeamBudget.Accounts.Data.User
   alias TeamBudget.Repo
 
   def list_users() do
